@@ -4,18 +4,16 @@ import {Muscle} from "../models/muscle"
 import { PersonalizatedExercise } from "../models/personalizedExercise";
 import { SubMuscle } from "../models/subMuscle";
 import { Training } from "../models/training";
-import { TrainingPlan } from "../models/trainingPlan";
 import { TypeOfTraining } from "../models/typeOfTraining";
 import { exerciseRepository } from "../repositories/exercise.repository";
-import { trainingRepository } from "../repositories/training.repository";
 import { DataValidatorBody } from "./DataValidator";
 import { Weight } from "../models/weight";
 import { NormalPlaner } from "../services/NormalPlanner";
 import { PlusPlanner } from "../services/PlusPlanner";
 import { TrainingPlanningStrategy } from "../services/TrainingPlanningStrategy";
-import { muscleList } from "../globalVariables";
 import { TrainingPlanInfo } from "../interfaces/TrainingPlanInfo";
-import { getDifficulty } from "./utils";
+import { difficultyRepository } from "../repositories/difficulty.repository";
+import { muscleRepository } from "../repositories/muscle.repository";
 
 export class ConverterBody{
 
@@ -28,7 +26,7 @@ export class ConverterBody{
     }
     
     static toExistingMuscle(muscle:any){
-      return muscleList.find(m => m.getName() === muscle.name);
+      return muscleRepository.getAll().find(m => m.getName() === muscle.name);
     }
 
     static toSubMuscle= function(body:any){
@@ -135,7 +133,7 @@ export class ConverterBody{
           weight = ConverterBody.toWeight(data);
       }
          
-      let difficulty = getDifficulty(typeOfDifficulty,weight);
+      let difficulty = difficultyRepository.getDifficulty(typeOfDifficulty,weight);
 
       let trainingPlanInfo: TrainingPlanInfo ={
          muscles,

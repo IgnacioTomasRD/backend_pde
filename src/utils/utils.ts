@@ -1,17 +1,13 @@
-import { difficultyList, exerciseList, muscleList } from "../globalVariables";
+import { difficultyList, exerciseList  } from "../globalVariables";
 import { Exercise } from "../models/exercise";
 import { TypeOfDifficulty } from "../models/TypeOfDifficulty";
 import { TypeOfTraining } from "../models/typeOfTraining";
 import { Weight } from "../models/weight";
+import { exerciseRepository } from "../repositories/exercise.repository";
 
-
-export function getDifficulty(typeOfDifficulty: TypeOfDifficulty, weight: Weight){
-    let difficulty = difficultyList.find(dif => dif.getTypeOfDifficulty() === typeOfDifficulty && dif.getWeight() === weight);
-    return difficulty ? difficulty : difficultyList[0] ;
-}
 
 export function getExercisesAccordingToTypeOfTraining(typeOfTraining: TypeOfTraining | undefined){
-    return typeOfTraining ? exerciseList.filter(ex => ex.getTypesOfTraining().includes(typeOfTraining)) : undefined;
+    return typeOfTraining ? exerciseRepository.getAll().filter(ex => ex.getTypesOfTraining().includes(typeOfTraining)) : undefined;
 }
 
 export function getMatrixAccordingToMuscles(muscles: string | any[],exercises: Exercise[] | undefined){

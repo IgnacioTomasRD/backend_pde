@@ -13,11 +13,11 @@ const DataValidator_1 = require("./DataValidator");
 const weight_1 = require("../models/weight");
 const NormalPlanner_1 = require("../services/NormalPlanner");
 const PlusPlanner_1 = require("../services/PlusPlanner");
-const globalVariables_1 = require("../globalVariables");
-const utils_1 = require("./utils");
+const difficulty_repository_1 = require("../repositories/difficulty.repository");
+const muscle_repository_1 = require("../repositories/muscle.repository");
 class ConverterBody {
     static toExistingMuscle(muscle) {
-        return globalVariables_1.muscleList.find(m => m.getName() === muscle.name);
+        return muscle_repository_1.muscleRepository.getAll().find(m => m.getName() === muscle.name);
     }
 }
 exports.ConverterBody = ConverterBody;
@@ -125,7 +125,7 @@ ConverterBody.toTrainingPlanInfo = function (data) {
     else {
         weight = ConverterBody.toWeight(data);
     }
-    let difficulty = (0, utils_1.getDifficulty)(typeOfDifficulty, weight);
+    let difficulty = difficulty_repository_1.difficultyRepository.getDifficulty(typeOfDifficulty, weight);
     let trainingPlanInfo = {
         muscles,
         typeOfTraining,

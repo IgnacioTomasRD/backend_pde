@@ -1,6 +1,6 @@
 import { TrainingPlanInfo } from "../interfaces/TrainingPlanInfo";
 import { TrainingPlan } from "../models/trainingPlan";
-import { getDifficulty, getExercisesAccordingToTypeOfTraining, getMatrixAccordingToMuscles } from "../utils/utils";
+import { getExercisesAccordingToTypeOfTraining, getMatrixAccordingToMuscles } from "../utils/utils";
 import { NormalPlaner } from "./NormalPlanner";
 import { TrainingPlanningStrategy } from "./TrainingPlanningStrategy";
 
@@ -17,7 +17,6 @@ export class TrainingGenerator{
 
     createPlan(trainingPlanInfo: TrainingPlanInfo): TrainingPlan{
         try{
-            console.log(trainingPlanInfo);
 
             let {muscles,typeOfTraining,days,duration,typeOfPlanner,difficulty} = trainingPlanInfo;
             if(days> muscles.length){

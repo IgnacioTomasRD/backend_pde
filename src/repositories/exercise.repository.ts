@@ -1,4 +1,4 @@
-import { exerciseList,muscleList} from "../globalVariables";
+import { exerciseList} from "../globalVariables";
 import { Exercise } from "../models/exercise";
 
 
