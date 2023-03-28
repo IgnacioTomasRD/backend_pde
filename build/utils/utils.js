@@ -1,14 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.selectExercises = exports.divideNumberIntoParts = exports.getMatrixAccordingToMuscles = exports.getExercisesAccordingToTypeOfTraining = exports.getDifficulty = void 0;
-const globalVariables_1 = require("../globalVariables");
-function getDifficulty(typeOfDifficulty, weight) {
-    let difficulty = globalVariables_1.difficultyList.find(dif => dif.getTypeOfDifficulty() === typeOfDifficulty && dif.getWeight() === weight);
-    return difficulty ? difficulty : globalVariables_1.difficultyList[0];
-}
-exports.getDifficulty = getDifficulty;
+exports.selectExercises = exports.divideNumberIntoParts = exports.getMatrixAccordingToMuscles = exports.getExercisesAccordingToTypeOfTraining = void 0;
+const exercise_repository_1 = require("../repositories/exercise.repository");
 function getExercisesAccordingToTypeOfTraining(typeOfTraining) {
-    return typeOfTraining ? globalVariables_1.exerciseList.filter(ex => ex.getTypesOfTraining().includes(typeOfTraining)) : undefined;
+    return typeOfTraining ? exercise_repository_1.exerciseRepository.getAll().filter(ex => ex.getTypesOfTraining().includes(typeOfTraining)) : undefined;
 }
 exports.getExercisesAccordingToTypeOfTraining = getExercisesAccordingToTypeOfTraining;
 function getMatrixAccordingToMuscles(muscles, exercises) {

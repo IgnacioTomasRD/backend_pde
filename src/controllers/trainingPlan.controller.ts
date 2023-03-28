@@ -1,9 +1,7 @@
 
 import { Request, Response } from "express";
-import { TypeOfTraining } from "../models/typeOfTraining";
 import { trainingPlanRepository } from "../repositories/trainingPlan.repository";
 import { TrainingGenerator } from "../services/TrainingGenerator";
-import generateTrainingPlan from "../services/trainingPlanServices";
 import { ConverterBody } from "../utils/ConverterBody";
 
 
